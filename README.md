@@ -7,6 +7,10 @@ This project explores the possibilities of the Django Rest Framework to create a
 ## Used Stack 
 - REST API
 - SQLite
+- Frontend(still in discussion)
 - uv package manager
+
+
+
 
 

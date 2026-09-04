@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'purchases',
     'countries',
     'shipping',
+    'seeding',
 ]
 
 MIDDLEWARE = [
