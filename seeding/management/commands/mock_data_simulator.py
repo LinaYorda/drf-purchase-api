@@ -6,12 +6,6 @@ from django.core.management.base import BaseCommand
 
 
 
-
-
-
-
-
-
 class CountryFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Country
@@ -56,8 +50,14 @@ class Command(BaseCommand):
         countries = CountryFactory.create_batch(1000)
         self.stdout.write(self.style.SUCCESS('Successfully seeded 1000 countries.'))
 
-        purchases = PurchaseFactory.create_batch(1000)
-        self.stdout.write(self.style.SUCCESS('Successfully seeded 1000 purchases.'))
+        purchases = [                                                                                                                                                  
+          PurchaseFactory(country=random.choice(countries))                                                                                                          
+          for _ in range(1000)                                                                                                                                       
+        ]                                                                                                                                                              
+        self.stdout.write(self.style.SUCCESS('Successfully seeded 1000 purchases.'))      
 
-        items = PurchasedItemFactory.create_batch(1000)
-        self.stdout.write(self.style.SUCCESS('Successfully seeded 1000 purchased items.'))
+        items = [                                                                                                                                                      
+          PurchasedItemFactory(purchase=random.choice(purchases))                                                                                                    
+          for _ in range(1000)                                                                                                                                       
+        ]                                                                                                                                                              
+        self.stdout.write(self.style.SUCCESS('Successfully seeded 1000 purchased items.'))   
