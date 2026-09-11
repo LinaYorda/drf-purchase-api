@@ -19,6 +19,8 @@ cd drf-purchase-api
 uv sync
 cp .env.example .env    # fill in your own SECRET_KEY
 python manage.py migrate
+python manage.py mock_data_simulator      # optional: seeds countries/purchases/purchased items 
+python manage.py seed_shipping_mock_data  # optional: generates fake shipping tracking data
 python manage.py runserver
 ```
 
