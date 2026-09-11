@@ -24,11 +24,11 @@ python manage.py runserver
 
 ## Project Structure
 
-- purchases/ — core purchase/order logic
-- countries/ — country reference data
-- shipping/ — shipping-related models and logic
-- seeding/ — management commands for populating demo/test data
-- config/ — Django project settings, URLs, WSGI/ASGI entry points
+- purchases/ — core purchase/order logic; mock data generated with Faker.
+- countries/ — country reference data; mock data generated with Faker.
+- shipping/ — shipping-related models and logic; mock data generated with Faker.
+- seeding/ — management commands for populating demo/test data.
+- config/ — Django project settings, URLs, WSGI/ASGI entry points.
 
 ## Status 
 
