@@ -19,6 +19,7 @@ cd drf-purchase-api
 uv sync
 cp .env.example .env    # fill in your own SECRET_KEY
 python manage.py migrate
+python manage.py createsuperuser   # follow the prompts to set your own admin login  
 python manage.py mock_data_simulator      # optional: seeds countries/purchases/purchased items 
 python manage.py seed_shipping_mock_data  # optional: generates fake shipping tracking data
 python manage.py runserver
@@ -51,6 +52,5 @@ Frontend (TBD)
 ## License
 
 This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
-
 
 

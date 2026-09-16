@@ -4,6 +4,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .serializers import ShippingStatusSerializer
 from .mock_data import MOCK_CARRIER_DATA
+from rest_framework.permissions import IsAuthenticated
+from purchases.permissions import IsManager
 
 # Create your views here.
 
@@ -23,6 +25,7 @@ def fetch_shipping_status(tracking_number):
     return {"tracking_number": tracking_number, **record}
 
 class ShippingStatusView(APIView):
+    permission_classes = [IsAuthenticated, IsManager]
     def get(self, request, tracking_number):
         data = fetch_shipping_status(tracking_number)
         serializer = ShippingStatusSerializer(data)
