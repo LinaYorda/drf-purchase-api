@@ -115,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Rest Framework settings - pagination
 REST_FRAMEWORK = {                                                                                                                                                                 
       'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',                                                                                                  
-      'PAGE_SIZE': 70,                                                                                                                                                               
+      'PAGE_SIZE': 100,                                                                                                                                                               
   }  
 
 

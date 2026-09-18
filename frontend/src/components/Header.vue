@@ -9,6 +9,7 @@
         <nav>
         <router-link to ="/countries">Countries</router-link>
         </nav>
+        <router-link to="/login">Login</router-link>
     </header>
 </template>
 
@@ -18,7 +19,7 @@ header {
     position:fixed;
     top:0;
     width:100%;
-    background-color:#bdcad7;
+    background-color:#b1cbe7;
     padding:10px 0;
     text-align:center;
     box-shadow:0 2px 4px rgba(0,0,0,0.1);
