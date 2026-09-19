@@ -17,7 +17,7 @@ class PurchasedItemDetailView(generics.RetrieveUpdateAPIView):
 
 
 class PurchaseViewSet(viewsets.ModelViewSet):
-    queryset = Purchase.objects.all()
+    queryset = Purchase.objects.prefetch_related('items')
     serializer_class = PurchaseSerializer
 
     @action(detail=True, methods=['post'])

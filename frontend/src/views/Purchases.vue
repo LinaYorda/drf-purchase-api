@@ -26,6 +26,11 @@
     const hasPrevious = ref(false)
     const searchValue = ref('')
 
+    const expanded = ref(new Set())
+    function toggle(id) {
+        expanded.value.has(id) ? expanded.value.delete(id) : expanded.value.add(id)
+    }
+
     async function fetchCountries() {
         const params = new URLSearchParams({ page: page.value })
         if (searchValue.value) {
@@ -71,6 +76,7 @@
             <table class="table table-zebra text-sm">
               <thead>
                 <tr v-for="headerGroup in table.getHeaderGroups()" :key="headerGroup.id">
+                  <th class="sticky top-0 bg-base-100 z-10"></th>
                   <th
                     v-for="header in headerGroup.headers"
                     :key="header.id"
@@ -81,11 +87,32 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="row in table.getRowModel().rows" :key="row.id" class="hover:bg-base-200">
-                  <td v-for="cell in row.getAllCells()" :key="cell.id">
-                    <FlexRender :cell="cell" />
-                  </td>
-                </tr>
+                <template v-for="row in table.getRowModel().rows" :key="row.id">
+                  <tr class="hover:bg-base-200 cursor-pointer" @click="toggle(row.original.id)">
+                    <td>{{ expanded.has(row.original.id) ? '▾' : '▸' }}</td>
+                    <td v-for="cell in row.getAllCells()" :key="cell.id">
+                      <FlexRender :cell="cell" />
+                    </td>
+                  </tr>
+
+                  <tr v-if="expanded.has(row.original.id)">
+                    <td :colspan="columns.length + 1" class="bg-base-200">
+                      <table v-if="row.original.items.length" class="table table-xs">
+                        <thead>
+                          <tr><th>Product</th><th>Quantity</th><th>Unit price</th></tr>
+                        </thead>
+                        <tbody>
+                          <tr v-for="item in row.original.items" :key="item.id">
+                            <td>{{ item.product_name }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>{{ item.unit_price }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <span v-else class="opacity-60">No items for this purchase</span>
+                    </td>
+                  </tr>
+                </template>
               </tbody>
             </table>
           </div>
