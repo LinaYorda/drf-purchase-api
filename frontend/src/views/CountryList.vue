@@ -1,143 +1,98 @@
-<script setup>
-import { ref, onMounted, watch } from 'vue'
-import { FlexRender, tableFeatures, useTable } from '@tanstack/vue-table'
+    <script setup>
+    import { ref, onMounted, watch } from 'vue'
+    import { FlexRender, tableFeatures, useTable } from '@tanstack/vue-table'
 
-const features=tableFeatures({})
-const countries = ref([])
-const columns = [
-    {
-        header: 'Country Name',
-        accessorKey: 'name',
-    },
-    {
-        header: 'Local Address',
-        accessorKey: 'local_address',
-    },
+    const features = tableFeatures({})
+    const countries = ref([])
+    const columns = [
+        { header: 'Country Name', accessorKey: 'name' },
+        { header: 'Local Address', accessorKey: 'local_address' },
+        { header: 'Local Code', accessorKey: 'local_code' },
+        { header: 'Country Code', accessorKey: 'country_code' },
+        { header: 'Local VAT', accessorKey: 'local_vat' }
+    ]
 
-    {
-        header: 'Local Code',
-        accessorKey: 'local_code',
-    }, 
-    {
-        header: 'Country Code',
-        accessorKey: 'country_code',
-    },
-    {
-        header: 'Local VAT',
-        accessorKey: 'local_vat',
+    const table = useTable({
+        data: countries,
+        columns,
+        features
+    })
+
+    const page = ref(1)
+    const totalCount = ref(0)
+    const hasNext = ref(false)
+    const hasPrevious = ref(false)
+    const searchValue = ref('')
+
+    async function fetchCountries() {
+        const params = new URLSearchParams({ page: page.value })
+        if (searchValue.value) {
+            params.set('search', searchValue.value)
+        }
+        const response = await fetch(`http://localhost:8000/api/countries/?${params.toString()}`)
+        const data = await response.json()
+        countries.value = data.results
+        totalCount.value = data.count
+        hasNext.value = !!data.next
+        hasPrevious.value = !!data.previous
     }
-]
 
+    function nextPage() {
+        if (hasNext.value) page.value++
+    }
+    function prevPage() {
+        if (hasPrevious.value) page.value--
+    }
 
-const table = useTable({
-    data: countries,
-    columns,
-    features
-})
+    watch([searchValue, page], fetchCountries)
+    onMounted(fetchCountries)
+    </script>
 
-  const page = ref(1)                                                                                                                                                 
-  const totalCount = ref(0)                                                                                                                                           
-  const hasNext = ref(false)                                                                                                                                          
-  const hasPrevious = ref(false)                                                                                                                                      
-                                                                                                                                                                      
-  async function fetchCountries() {                                                                                                                                   
-      const response = await fetch(`http://localhost:8000/api/countries/?page=${page.value}`)                                                                         
-      const data = await response.json()                                                                                                                              
-      countries.value = data.results                                                                                                                                  
-      totalCount.value = data.count                                                                                                                                   
-      hasNext.value = !!data.next                                                                                                                                     
-      hasPrevious.value = !!data.previous                                                                                                                             
-  }                                                                                                                                                                   
-  function nextPage() {                                                                                                                                               
-      if (hasNext.value) page.value++                                                                                                                                 
-  }                                                                                                                                                                   
-  function prevPage() {                                                                                                                                               
-      if (hasPrevious.value) page.value--                                                                                                                             
-  }                                                                                                                                                                   
-                                                                                                                                                                      
-  watch(page, fetchCountries)                                                                                                                                         
-  onMounted(fetchCountries)                           
+    <template>
+      <div class="card bg-base-100 shadow-sm w-full">
+        <div class="card-body">
+          <div class="flex items-center justify-between gap-2 mb-4">
+            <h2 class="text-lg font-bold text-gray-500">Countries Table</h2>
 
-</script>
+            <label class="input">
+              <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <path d="m21 21-4.3-4.3"></path>
+                </g>
+              </svg>
+              <input v-model="searchValue" type="search" placeholder="Search countries..." />
+            </label>
+          </div>
 
-<template>
-    <div class = "country-table">
-        <div class = "table-scroll">
-            <table>
-                <thead>
-                    <tr v-for="headerGroup in table.getHeaderGroups()" :key="headerGroup.id">
-                        <th v-for="header in headerGroup.headers" :key="header.id">
-                            <FlexRender v-if="!header.isPlaceholder" :header="header" />
-                        </th>
-                    </tr>    
-                </thead>
-                <tbody>
-                    <tr v-for="row in table.getRowModel().rows" :key="row.id">
-                        <td v-for="cell in row.getAllCells()" :key="cell.id">
-                            <FlexRender :cell="cell" />
-                        </td>
-                    </tr>
-                </tbody>
+          <div class="relative overflow-auto" style="max-height: clamp(200px, calc(100vh - 348px), 900px)">
+            <table class="table table-zebra text-sm">
+              <thead>
+                <tr v-for="headerGroup in table.getHeaderGroups()" :key="headerGroup.id">
+                  <th
+                    v-for="header in headerGroup.headers"
+                    :key="header.id"
+                    class="sticky top-0 bg-base-100 z-10"
+                  >
+                    <FlexRender v-if="!header.isPlaceholder" :header="header" />
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="row in table.getRowModel().rows" :key="row.id" class="hover:bg-base-200">
+                  <td v-for="cell in row.getAllCells()" :key="cell.id">
+                    <FlexRender :cell="cell" />
+                  </td>
+                </tr>
+              </tbody>
             </table>
-        </div>
-        <div class = "pagination-bar">
-            <button :disabled="!hasPrevious" @click="prevPage">Previous</button>
+          </div>
+
+          <div class="flex items-center justify-end gap-4 mt-4">
+            <button class="btn btn-sm" :disabled="!hasPrevious" @click="prevPage">Previous</button>
             <span>Page {{ page }} ({{ totalCount }} total)</span>
-            <button :disabled="!hasNext" @click="nextPage">Next</button>
+            <button class="btn btn-sm" :disabled="!hasNext" @click="nextPage">Next</button>
+          </div>
         </div>
-    </div>
-</template>
-
-
-
-<style scoped>
-
-.country-table {
-    background: #fff;
-    border:1px solid #ddd;
-    border-radius:8px;
-    box-shadow: hidden;
-}
-
-.table-scroll {
-    max-height: clamp(300px, 70vh, 1000px); 
-    overflow-y: auto;
-}
-
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-th, td {
-    border: 1px solid #ccc;
-    padding: 8px 12px;
-    text-align: left;
-}
-
-th {
-    background-color: #bdcad7;
-    font-weight: bold;
-    position: sticky;
-    top: 0;
-    z-index: 1;
-}
-
-tbody tr:nth-child(even) {
-    background-color: #f5f5f5;
-}
-
-tbody tr:hover {
-    background-color: #e8f0f7;
-}
-
-.pagination-bar {
-    display: flex;
-    align-items:center;
-    justify-content: flex-end;
-    gap:16px;
-    padding: 12px 16px;
-    border-top:1px solid #ddd;
-    background: #f9fafb;
-}
-</style>
+      </div>
+    </template>
