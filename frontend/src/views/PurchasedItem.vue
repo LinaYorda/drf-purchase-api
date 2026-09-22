@@ -44,12 +44,3 @@ watch(page, fetchPurchasedItems)
 onMounted(fetchPurchasedItems)
 
 </script>
-
-
-
-
-
-<template>
-
-
-</template>

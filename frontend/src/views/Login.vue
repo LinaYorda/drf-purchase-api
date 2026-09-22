@@ -2,20 +2,36 @@
 
 
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { login } from '../auth.js'
 
+const router = useRouter()
 const username = ref('')
 const password = ref('')
 const error = ref('')
+const loading = ref(false)
 
-function submit() {
+async function submit() {
     error.value = ''
     if (!username.value.trim() || !password.value) {
         error.value = 'Please enter both username and password.'
         return
     }
-  // 
-    console.log('login attempt for:', username.value)
-} 
+
+    loading.value = true
+    try {
+        const ok = await login(username.value.trim(), password.value)
+        if (ok) {
+            router.push('/home')
+        } else {
+            error.value = 'Invalid username or password.'
+        }
+    } catch {
+        error.value = 'Could not reach the server. Please try again.'
+    } finally {
+        loading.value = false
+    }
+}
 
 
 </script>
@@ -44,7 +60,7 @@ function submit() {
 
             <p v-if="error" class="text-error mt-2">{{ error }}</p>
 
-            <button type="submit" class="btn btn-neutral mt-4">Login</button>
+            <button type="submit" class="btn btn-neutral mt-4" :disabled="loading">Login</button>
           </fieldset>
         </form>
       </div>

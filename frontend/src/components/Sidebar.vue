@@ -31,6 +31,12 @@
             <span class="is-drawer-close:hidden">Shipping Status</span>
           </router-link>
         </li>
+        <li>
+          <router-link to="/logout" class="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Logout">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor" class="my-1.5 inline-block size-4"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><path d="M16 17l5-5-5-5"></path><path d="M21 12H9"></path></svg>
+            <span class="is-drawer-close:hidden">Logout</span>
+          </router-link>
+        </li>
       </ul>
     </div>
   </div>

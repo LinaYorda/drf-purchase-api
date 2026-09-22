@@ -123,6 +123,9 @@ REST_FRAMEWORK = {
 CORS_ALLOWED_ORIGINS = (
     "http://localhost:5173",
 )
+# Let the browser send the session cookie on cross-origin requests from the frontend
+CORS_ALLOW_CREDENTIALS = True
+CSRF_TRUSTED_ORIGINS = ["http://localhost:5173"]
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
