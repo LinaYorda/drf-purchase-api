@@ -2,6 +2,20 @@
 
 A full-stack purchase management system for a small book shop, with a Django REST Framework backend and a Vue.js frontend that consumes the API.
 
+
+<table>
+  <tr>
+    <td><img src="docs/screenshots/drf-purchase-api-login.png" width="400" alt="Login page"></td>
+    <td><img src="docs/screenshots/drf-purchase-api-countries-table.png" width="400" alt="Countries table"></td>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/drf-purchase-api-purchases-table.png" width="400" alt="Purchases table"></td>
+    <td><img src="docs/screenshots/drf-purchase-api-shipping-status-table.png" width="400" alt="Shipping status lookup"></td>
+  </tr>
+</table>
+
+
+
 ## Used Stack
 
 - Django and Django REST Framework (REST API)

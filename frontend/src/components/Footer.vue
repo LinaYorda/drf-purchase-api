@@ -5,7 +5,7 @@
 <template>
     <footer class="footer sm:footer-horizontal footer-center text-base-content">
         <aside>
-            <p>Copyright © {{new Date().getFullYear()}} - All right reserved by ACME Industries Ltd</p>
+            <p>Copyright © {{new Date().getFullYear()}} - Developed by Tsvetelina Yordanova with Vue.js and Django REST Framework</p>
         </aside>
     </footer>
 </template>
