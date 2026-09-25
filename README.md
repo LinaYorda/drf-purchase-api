@@ -14,8 +14,6 @@ A full-stack purchase management system for a small book shop, with a Django RES
   </tr>
 </table>
 
-
-
 ## Used Stack
 
 - Django and Django REST Framework (REST API)
