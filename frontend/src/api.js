@@ -19,8 +19,12 @@ export async function apiFetch(path, options = {}) {
     }
     const response = await fetch(API_URL + path, { ...options, method, headers, credentials: 'include' })
 
-    if ((response.status === 401 || response.status === 403) && !path.startsWith('/me')) {
+    if (response.status === 401 && !path.startsWith('/me')) {
         onUnauthorized()
+    } else if (response.status === 403 && !path.startsWith('/me')) {
+        // 403 means either "not logged in" or "not allowed": ask the server which
+        const me = await fetch(API_URL + '/me/', { credentials: 'include' })
+        if (!me.ok) onUnauthorized()
     }
     return response
 }

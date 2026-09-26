@@ -1,6 +1,6 @@
 <script setup>
-
 import { ref } from 'vue'
+import { apiFetch } from '../api.js'
 
 const trackingNumber = ref('')
 const result = ref(null)
@@ -20,7 +20,11 @@ async function search() {
 
     loading.value = true
     try {
-        const response = await fetch(`http://localhost:8000/api/shipping-status/${value}/`)
+        const response = await apiFetch(`/shipping-status/${value}/`)
+        if (response.status === 403) {
+            error.value = "You don't have permission to look up shipping status."
+            return
+        }
         if (response.status === 404) {
             error.value = 'Tracking number not found.'
             return

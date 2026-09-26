@@ -1,6 +1,7 @@
     <script setup>
     import { ref, onMounted, watch } from 'vue'
     import { FlexRender, tableFeatures, useTable } from '@tanstack/vue-table'
+    import { apiFetch } from '../api.js'
 
     const features = tableFeatures({})
     const countries = ref([])
@@ -29,7 +30,8 @@
         if (searchValue.value) {
             params.set('search', searchValue.value)
         }
-        const response = await fetch(`http://localhost:8000/api/countries/?${params.toString()}`)
+        const response = await apiFetch(`/countries/?${params.toString()}`)
+        if (!response.ok) return
         const data = await response.json()
         countries.value = data.results
         totalCount.value = data.count
