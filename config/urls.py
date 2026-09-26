@@ -24,6 +24,7 @@ urlpatterns = [
     path('api/login/', auth_views.login_view),
     path('api/logout/', auth_views.logout_view),
     path('api/me/', auth_views.me),
+    path('api-auth/', include('rest_framework.urls')),
     path('api/', include('purchases.urls')),
     path('api/', include('countries.urls')),
     path('api/', include('shipping.urls')),

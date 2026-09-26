@@ -2,7 +2,6 @@
 
 A full-stack purchase management system for a small book shop, with a Django REST Framework backend and a Vue.js frontend that consumes the API.
 
-
 <table>
   <tr>
     <td><img src="docs/screenshots/drf-purchase-api-login.png" width="400" alt="Login page"></td>
@@ -34,7 +33,8 @@ cd drf-purchase-api
 uv sync
 cp .env.example .env    # fill in your own SECRET_KEY
 python manage.py migrate
-python manage.py mock_data_simulator      # optional: seeds countries/purchases/purchased items
+python manage.py createsuperuser   # follow the prompts to set your own admin login
+python manage.py mock_data_simulator      # optional: seeds countries/purchases/purchased items 
 python manage.py seed_shipping_mock_data  # optional: generates fake shipping tracking data
 python manage.py runserver                # http://localhost:8000
 ```
@@ -116,3 +116,4 @@ Planned:
 ## License
 
 This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+
