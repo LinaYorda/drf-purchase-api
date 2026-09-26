@@ -1,6 +1,11 @@
-# Django REST API Purchase Management System
+# Purchase Management System: Django REST Framework, Vue.js, Tailwind CSS & daisyUI
 
-A full-stack purchase management system for a small book shop, with a Django REST Framework backend and a Vue.js frontend that consumes the API.
+A full-stack purchase management system for a small book shop, with a Django REST Framework backend and a Vue.js frontend (styled with Tailwind CSS and daisyUI) that consumes the API.
+
+
+<p align="center">
+  <img src="docs/screenshots/drf-purchase-api-user-dashboard.png" width="820" alt="Dashboard after login">
+</p>
 
 <table>
   <tr>
