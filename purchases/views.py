@@ -26,7 +26,7 @@ class PurchaseViewSet(viewsets.ModelViewSet):
             return [IsAuthenticated()]
         return [IsAuthenticated(), IsManager()]
 
-    queryset = Purchase.objects.all()
+    queryset = Purchase.objects.prefetch_related('items')
     serializer_class = PurchaseSerializer
 
     @action(detail=True, methods=['post'])

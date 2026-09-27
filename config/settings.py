@@ -47,9 +47,11 @@ INSTALLED_APPS = [
     'countries',
     'shipping',
     'seeding',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -110,14 +112,20 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-
+# Rest Framework settings - pagination
 REST_FRAMEWORK = {                                                                                                                                                                 
       'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',                                                                                                  
-      'PAGE_SIZE': 2,                                                                                                                                                               
+      'PAGE_SIZE': 100,                                                                                                                                                               
   }  
 
 
-
+#Cors allowed origins
+CORS_ALLOWED_ORIGINS = (
+    "http://localhost:5173",
+)
+# Let the browser send the session cookie on cross-origin requests from the frontend
+CORS_ALLOW_CREDENTIALS = True
+CSRF_TRUSTED_ORIGINS = ["http://localhost:5173"]
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
