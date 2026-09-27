@@ -2,21 +2,11 @@
 
 A full-stack purchase management system for a small book shop, with a Django REST Framework backend and a Vue.js frontend (styled with Tailwind CSS and daisyUI) that consumes the API.
 
-
 <p align="center">
   <img src="docs/screenshots/drf-purchase-api-user-dashboard.png" width="820" alt="Dashboard after login">
 </p>
 
-<table>
-  <tr>
-    <td><img src="docs/screenshots/drf-purchase-api-login.png" width="400" alt="Login page"></td>
-    <td><img src="docs/screenshots/drf-purchase-api-countries-table.png" width="400" alt="Countries table"></td>
-  </tr>
-  <tr>
-    <td><img src="docs/screenshots/drf-purchase-api-purchases-table.png" width="400" alt="Purchases table"></td>
-    <td><img src="docs/screenshots/drf-purchase-api-shipping-status-table.png" width="400" alt="Shipping status lookup"></td>
-  </tr>
-</table>
+<p align="center"><i>More screenshots (login, tables, shipping status) in the <a href="../../wiki/Screenshots">Wiki</a>.</i></p>
 
 ## Used Stack
 
