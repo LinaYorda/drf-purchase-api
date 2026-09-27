@@ -7,10 +7,9 @@
     const countries = ref([])
     const columns = [
         { header: 'Country Name', accessorKey: 'name' },
-        { header: 'Local Address', accessorKey: 'local_address' },
-        { header: 'Local Code', accessorKey: 'local_code' },
         { header: 'Country Code', accessorKey: 'country_code' },
-        { header: 'Local VAT', accessorKey: 'local_vat' }
+        { header: 'Continent', accessorKey: 'continent' },
+        { header: 'VAT Rate', accessorKey: 'vat_rate' }
     ]
 
     const table = useTable({
