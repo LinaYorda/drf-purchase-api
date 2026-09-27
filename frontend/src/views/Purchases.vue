@@ -8,7 +8,7 @@
     const columns = [
         { header: 'Title', accessorKey: 'title' },
         { header: 'City', accessorKey: 'city' },
-        { header: 'Country', accessorKey: 'country' },
+        { header: 'Country', accessorKey: 'country_name' },
         { header: 'Continent', accessorKey: 'continent' },
         { header: 'Purchase Date', accessorKey: 'purchase_date' }, 
         { header: 'Price', accessorKey: 'price' }, 
