@@ -70,13 +70,14 @@ All endpoints are under `/api/`. List endpoints are paginated (100 per page, use
 | `/api/purchases/` | List and create purchases (router-based viewset) |
 | `/api/purchased-items/<id>/` | Purchased item detail |
 | `/api/shipping-status/<tracking_number>/` | Shipping status by tracking number |
+| `/api/login/`, `/api/logout/`, `/api/me/`, `/api/csrf/` | Session-based authentication |
 
 ## Project Structure
 
 **Backend**
 
 - purchases/ — core purchase/order logic; mock data generated with Faker.
-- countries/ — country reference data; mock data generated with Faker.
+- countries/ — country reference data (193 real countries, seeded with accurate continents and VAT rates).
 - shipping/ — shipping-related models and logic; mock data generated with Faker.
 - seeding/ — management commands for populating demo/test data.
 - config/ — Django project settings, URLs, WSGI/ASGI entry points.
@@ -90,23 +91,7 @@ All endpoints are under `/api/`. List endpoints are paginated (100 per page, use
 
 ## Status
 
-🚧 Work in progress.
-
-Done:
-
-- Django + DRF project scaffolding
-- Base apps: purchases, countries, shipping
-- Data seeding setup
-- API endpoints for countries and purchases, with pagination
-- Vue frontend with routing, a collapsible sidebar, and paginated Countries and Purchases tables
-- CORS configuration for the local frontend
-
-Planned:
-
-- Search on the tables (the search box is in the UI, backend filtering is not implemented yet)
-- Login and authentication, with the dashboard visible only to logged-in users
-- Show country names instead of IDs in the Purchases table
-- Frontend pages for purchased items and shipping
+🚧 Work in progress. Core features (auth, Countries/Purchases/Shipping Status tables, realistic seed data) are working. See the [Roadmap](../../wiki/Roadmap) in the Wiki for the current Done/Planned list.
 
 ## License
 
