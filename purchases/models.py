@@ -9,6 +9,8 @@ class Purchase(models.Model):
     continent = models.CharField(max_length=100, blank=True, null=True)
     purchase_date = models.DateField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
+    class Meta:
+        ordering = ['-purchase_date', 'id']
 
 
 class PurchasedItem(models.Model):
