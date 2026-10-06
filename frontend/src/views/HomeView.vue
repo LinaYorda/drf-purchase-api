@@ -1,5 +1,25 @@
 <script setup>
 import { user } from '../auth.js';
+import {apiFetch} from "../api.js";
+import {onMounted, ref} from "vue";
+
+
+const total_purchases = ref(0)
+const purchased_items = ref(0)
+const shipments = ref(0)
+
+async function fetchStats() {
+  const response = await apiFetch('/stats/');
+  if (!response.ok) return;
+  const data = await response.json()
+  total_purchases.value = data.total_purchases;
+  purchased_items.value = data.purchased_items;
+  shipments.value = data.shipments;
+}
+
+onMounted(fetchStats)
+
+
 
 const faqs = [
     { question: 'How do I see the items in a purchase?', answer: 'Open Purchases and click a row. It expands to show its items.' },
@@ -19,7 +39,7 @@ const faqs = [
         <div class="stats shadow w-full mb-12">
             <div class="stat">
                 <div class="stat-title">Total Purchases</div>
-                <div class="stat-value">1,000</div>
+                <div class="stat-value">{{ total_purchases.toLocaleString() }}</div>
                 <div class="stat-desc">all time</div>
                 <div class="stat-figure text-secondary">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block h-8 w-8 stroke-current">
@@ -30,7 +50,7 @@ const faqs = [
 
             <div class="stat">
                 <div class="stat-title">Shipments</div>
-                <div class="stat-value">1,000</div>
+                <div class="stat-value">{{ shipments.toLocaleString() }}</div>
                 <div class="stat-desc">tracked</div>
                 <div class="stat-figure text-secondary">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block h-8 w-8 stroke-current">
@@ -41,7 +61,7 @@ const faqs = [
 
             <div class="stat">
                 <div class="stat-title">Purchased Items</div>
-                <div class="stat-value">1,000</div>
+                <div class="stat-value">{{ purchased_items.toLocaleString() }}</div>
                 <div class="stat-desc">all time</div>
                 <div class="stat-figure text-secondary">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block h-8 w-8 stroke-current">
