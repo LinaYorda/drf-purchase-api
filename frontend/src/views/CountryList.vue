@@ -90,9 +90,9 @@
           </div>
 
           <div class="flex items-center justify-end gap-4 mt-4">
-            <button class="btn btn-sm" :disabled="!hasPrevious" @click="prevPage">Previous</button>
+            <button class="btn btn-sm btn-warning" :disabled="!hasPrevious" @click="prevPage">Previous</button>
             <span>Page {{ page }} ({{ totalCount }} total)</span>
-            <button class="btn btn-sm" :disabled="!hasNext" @click="nextPage">Next</button>
+            <button class="btn btn-sm btn-warning" :disabled="!hasNext" @click="nextPage">Next</button>
           </div>
         </div>
       </div>

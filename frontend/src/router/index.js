@@ -6,6 +6,7 @@ import Purchases from '../views/Purchases.vue';
 import Shipping from '../views/Shipping.vue';
 import { isLoggedIn, checkAuth } from '../auth.js';
 import Logout from '../views/Logout.vue';
+import Profile from '../views/Profile.vue';
 
 const routes = [
     { path: '/', redirect: '/home' },
@@ -15,6 +16,7 @@ const routes = [
     { path: '/shipping-status', component: Shipping },
     { path: '/login', component: Login, meta: { hideChrome: true, public: true } },
     { path: '/logout', component: Logout},
+    { path: '/profile', component: Profile},
 
 ]
 

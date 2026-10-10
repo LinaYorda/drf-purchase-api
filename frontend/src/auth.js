@@ -28,7 +28,8 @@ export async function login(username, password) {
     if (response.status === 400) return false   // wrong username or password
     if (!response.ok) throw new Error('Login failed')
 
-    user.value = await response.json()
+    const meResponse = await apiFetch('/me/')
+    user.value = await meResponse.json()
     return true
 }
 

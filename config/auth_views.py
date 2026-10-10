@@ -37,4 +37,16 @@ def logout_view(request):
 def me(request):
     if not request.user.is_authenticated:
         return JsonResponse({'detail': 'Not authenticated.'}, status=401)
-    return JsonResponse({'username': request.user.username})
+    return JsonResponse({
+        'username': request.user.username,
+        'groups': list(request.user.groups.values_list('name', flat=True)),
+        'date_joined': request.user.date_joined,
+        'first_name': request.user.first_name,
+        'last_name': request.user.last_name,
+        'email': request.user.email,
+        'last_login': request.user.last_login,
+        'is_staff': request.user.is_staff,
+        'is_active': request.user.is_active,
+    })
+
+
