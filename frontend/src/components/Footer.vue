@@ -4,7 +4,7 @@
 
 <template>
     <footer class="footer sm:footer-horizontal footer-center text-neutral-content bg-neutral">
-        <div class="flex items-center gap3">
+        <div class="flex items-center gap-3">
             <p>Copyright © {{new Date().getFullYear()}} - Developed by Tsvetelina Yordanova with Vue.js and Django REST Framework</p>
             <a href="https://github.com/LinaYorda/drf-purchase-api" target="_blank" rel="noopener noreferrer" aria-label="GitHub repository">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6 fill-current">

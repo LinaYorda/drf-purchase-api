@@ -33,7 +33,7 @@ const faqs = [
 
 <template>
     <div>
-        <h1 class="text-3xl font-bold mb-3">Welcome back, {{ user?.first_name }}!</h1>
+        <h1 class="text-3xl font-bold mb-3">Welcome back, {{ user?.first_name || user?.username }}!</h1>
         <p class="mb-12 text/lg opacity-70">Pick a section below to browse your data, or look up a shipment by its tracking number.</p>
 
         <div class="stats shadow w-full mb-12">
