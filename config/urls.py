@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from . import auth_views
+from .views import StatsView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,4 +29,7 @@ urlpatterns = [
     path('api/', include('purchases.urls')),
     path('api/', include('countries.urls')),
     path('api/', include('shipping.urls')),
+
+    path('api/stats/',StatsView.as_view()),
+    path('api/change-password/', auth_views.change_password),
 ]

@@ -60,7 +60,7 @@ async function submit() {
 
             <p v-if="error" class="text-error mt-2">{{ error }}</p>
 
-            <button type="submit" class="btn btn-neutral mt-4" :disabled="loading">Login</button>
+            <button type="submit" class="btn btn-warning mt-4" :disabled="loading">Login</button>
           </fieldset>
         </form>
       </div>

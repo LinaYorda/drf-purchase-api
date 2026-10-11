@@ -50,8 +50,6 @@ function clear() {
 
 </script>
 
-
-
 <template>
 
     <div class="flex flex-1 flex-col items-center justify-center gap-4">
@@ -61,8 +59,8 @@ function clear() {
         <input v-model="trackingNumber" @keyup.enter="search" type="text" id="tracking-number" class="input w-full" placeholder="e.g. TRACK123456" />
         <p class="label">Format: TRACK followed by 6 digits. You can find it in your shipping confirmation.</p>
         <div class="flex gap-2">
-    <button class="btn btn-neutral flex-1" :disabled="loading" @click="search">Search</button>
-    <button class="btn btn-ghost" :disabled="!trackingNumber && !result && !error" @click="clear">Clear</button>
+    <button class="btn btn-warning flex-1" :disabled="loading" @click="search">Search</button>
+    <button class="btn btn-warning" :disabled="!trackingNumber && !result && !error" @click="clear">Clear</button>
 </div>
 
     </fieldset>

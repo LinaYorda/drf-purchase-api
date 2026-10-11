@@ -1,11 +1,11 @@
-    <script setup>
+<script setup>
     import { useRoute } from 'vue-router'
     import Header from './components/Header.vue'
     import Footer from './components/Footer.vue'
     import Sidebar from './components/Sidebar.vue'
 
     const route = useRoute()
-    </script>
+</script>
 
 <template>
   <div class="drawer lg:drawer-open">
@@ -26,7 +26,7 @@
 </template>
 
 
-    <style scoped>
+<style scoped>
     .page {
         height: 100vh;
         display: flex;
@@ -48,5 +48,5 @@
         display: flex;
         flex-direction: column;
     }
-    </style>
+</style>
 

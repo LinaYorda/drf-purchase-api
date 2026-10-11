@@ -6,6 +6,10 @@ A full-stack purchase management system for a small book shop, with a Django RES
   <img src="docs/screenshots/drf-purchase-api-user-dashboard.png" width="820" alt="Dashboard after login">
 </p>
 
+<p align="center">
+  <img src="docs/screenshots/drf-purchase-api-profile.png" width="820" alt="User profile page">
+</p>
+
 <p align="center"><i>More screenshots (login, tables, shipping status) in the <a href="../../wiki/Screenshots">Wiki</a>.</i></p>
 
 ## Used Stack
@@ -71,6 +75,8 @@ All endpoints are under `/api/`. List endpoints are paginated (100 per page, use
 | `/api/purchased-items/<id>/` | Purchased item detail |
 | `/api/shipping-status/<tracking_number>/` | Shipping status by tracking number |
 | `/api/login/`, `/api/logout/`, `/api/me/`, `/api/csrf/` | Session-based authentication |
+| `/api/stats/` | Dashboard summary stats (total purchases, shipments, purchased items) |
+| `/api/change-password/` | Change the logged-in user's password |
 
 ## Project Structure
 
@@ -84,7 +90,7 @@ All endpoints are under `/api/`. List endpoints are paginated (100 per page, use
 
 **Frontend** (`frontend/src/`)
 
-- views/ — pages (Home, Countries, Purchases, Login).
+- views/ — pages (Home, Countries, Purchases, Shipping, Profile, Login, Logout, PurchasedItem).
 - components/ — shared layout pieces (Header, Sidebar, Footer).
 - router/ — route definitions.
 - App.vue — page shell: header, collapsible sidebar (daisyUI drawer), content area, footer.
