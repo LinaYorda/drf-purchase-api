@@ -31,4 +31,5 @@ urlpatterns = [
     path('api/', include('shipping.urls')),
 
     path('api/stats/',StatsView.as_view()),
+    path('api/change_password/', auth_views.change_password),
 ]

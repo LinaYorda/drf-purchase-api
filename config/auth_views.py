@@ -1,9 +1,12 @@
 import json
 
-from django.contrib.auth import authenticate, login, logout
+
 from django.http import JsonResponse
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.views.decorators.http import require_GET, require_POST
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
+from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError
 
 
 @ensure_csrf_cookie
@@ -50,3 +53,27 @@ def me(request):
     })
 
 
+@require_POST
+def change_password(request):
+    if not request.user.is_authenticated:
+        return JsonResponse({ 'detail': 'Not authenticated'}, status=401)
+    try:
+        data=json.loads(request.body)
+    except json.JSONDecodeError:
+        return JsonResponse({'detail': 'Invalid request.'}, status=400)
+
+    old_password = data.get('old_password')
+    new_password = data.get('new_password')
+
+    if not request.user.check_password(old_password):
+        return JsonResponse({'detail': 'Current password is incorrect'}, status=400)
+
+    try:
+        validate_password(new_password, user=request.user)
+    except ValidationError as e:
+        return JsonResponse({'detail': e.message}, status=400)
+
+    request.user.set_password(new_password)
+    request.user.save()
+    update_session_auth_hash(request, request.user)
+    return JsonResponse({'detail': 'Password changed successfully.'})
