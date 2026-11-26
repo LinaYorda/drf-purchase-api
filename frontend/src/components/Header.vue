@@ -1,7 +1,9 @@
 <script setup>
 import { user } from '../auth.js';
 
-
+function closeDropdown(event) {
+    event.currentTarget.blur();
+}
 </script>
 
 <template>
@@ -20,8 +22,8 @@ import { user } from '../auth.js';
                 </div>
                 <ul tabindex="0" class="menu menu-sm dropdown-content z-50 mt-3 p-2 shadow bg-base-100 rounded-box w-52 text-left">
                     <li class="menu-title">{{ user.username }}</li>
-                    <li><router-link to="/profile">Profile</router-link></li>
-                    <li><router-link to="/logout">Logout</router-link></li>
+                    <li><router-link to="/profile" @click="closeDropdown">Profile</router-link></li>
+                    <li><router-link to="/logout" @click="closeDropdown">Logout</router-link></li>
                 </ul>
             </div>
         </div>
