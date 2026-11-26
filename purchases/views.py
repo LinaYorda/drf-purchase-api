@@ -17,8 +17,6 @@ class PurchasedItemDetailView(generics.RetrieveUpdateAPIView):
     queryset = PurchasedItem.objects.all()
     serializer_class = PurchasedItemSerializer
 
-
-
 class PurchaseViewSet(viewsets.ModelViewSet):
 
     def get_permissions(self):
@@ -26,7 +24,8 @@ class PurchaseViewSet(viewsets.ModelViewSet):
             return [IsAuthenticated()]
         return [IsAuthenticated(), IsManager()]
 
-    queryset = Purchase.objects.prefetch_related('items')
+    #queryset = Purchase.objects.prefetch_related('items')
+    queryset = Purchase.objects.select_related('country').prefetch_related('items')
     serializer_class = PurchaseSerializer
 
     @action(detail=True, methods=['post'])

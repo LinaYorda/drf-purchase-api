@@ -90,7 +90,7 @@ All endpoints are under `/api/`. List endpoints are paginated (100 per page, use
 
 **Frontend** (`frontend/src/`)
 
-- views/ — pages (Home, Countries, Purchases, Shipping, Profile, Login, Logout, PurchasedItem).
+- views/ — pages (Home, Countries, Purchases, Shipping, Profile, Login, Logout).
 - components/ — shared layout pieces (Header, Sidebar, Footer).
 - router/ — route definitions.
 - App.vue — page shell: header, collapsible sidebar (daisyUI drawer), content area, footer.

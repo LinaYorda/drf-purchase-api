@@ -2,6 +2,13 @@
     import { ref, onMounted, watch } from 'vue'
     import { FlexRender, tableFeatures, useTable } from '@tanstack/vue-table'
     import { apiFetch } from '../api.js'
+    import  PurchaseFormModal  from "../components/PurchaseFormModal.vue";
+
+
+    const formModal = ref(null)
+    function openAddModal() {
+      formModal.value?.open()
+    }
 
     const features = tableFeatures({})
     const purchases = ref([])
@@ -72,6 +79,7 @@
               </svg>
               <input v-model="searchValue" type="search" placeholder="Search countries..." />
             </label>
+            <button class="btn btn-warning btn-sm" @click="openAddModal()">+ Add purchase</button>
           </div>
 
           <div class="relative overflow-auto" style="max-height: clamp(200px, calc(100vh - 348px), 900px)">
@@ -124,6 +132,7 @@
             <span>Page {{ page }} ({{ totalCount }} total)</span>
             <button class="btn btn-sm btn-warning" :disabled="!hasNext" @click="nextPage">Next</button>
           </div>
+          <PurchaseFormModal ref="formModal" />
         </div>
       </div>
     </template>

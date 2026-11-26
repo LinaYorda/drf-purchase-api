@@ -11,3 +11,11 @@ class CountryListView(generics.ListAPIView):
     queryset = Country.objects.all()
     serializer_class = CountrySerializer
 
+
+class CountryAllListView(generics.ListAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = Country.objects.all()
+    serializer_class = CountrySerializer
+    pagination_class = None
+
+

@@ -3,7 +3,7 @@
 
 
 <template>
-    <footer class="footer sm:footer-horizontal footer-center text-neutral-content bg-neutral">
+    <footer class="footer sm:footer-horizontal footer-center text-base-content bg-base-100">
         <div class="flex items-center gap-3">
             <p>Copyright © {{new Date().getFullYear()}} - Developed by Tsvetelina Yordanova with Vue.js and Django REST Framework</p>
             <a href="https://github.com/LinaYorda/drf-purchase-api" target="_blank" rel="noopener noreferrer" aria-label="GitHub repository">
